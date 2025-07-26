@@ -67,6 +67,18 @@ def create_table():
             description TEXT NOT NULL
         )
     ''')
+
+    # Create the goals table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS goals (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            goal TEXT NOT NULL,
+            goal_subcategory TEXT NOT NULL,
+            goal_amount REAL NOT NULL,
+            progress REAL NOT NULL,
+            description TEXT
+        )
+    ''')
     
     conn.commit()
     conn.close()
@@ -80,5 +92,3 @@ def get_db_connection():
     conn = sqlite3.connect(db_path)
     return conn
 
-# Call this function at the start of your app
-create_table()
